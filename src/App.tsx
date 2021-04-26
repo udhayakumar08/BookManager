@@ -16,7 +16,7 @@ function App() {
     <div>
     
       <Switch>
-        {/* <Route exact path="/" component={Header}></Route> */}
+        <Route exact path="/" component={Booklist}></Route>
         <Route path="/Booklist" component={Booklist}></Route>
         <Route path="/Addbook" component={AddBook}></Route>
         <Route path="/Register" component={Register}></Route>
