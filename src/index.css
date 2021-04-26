@@ -1,0 +1,28 @@
+.book-header {
+  overflow: auto;
+    background-color: #380b5c;
+}
+.book-header a {
+    float: right;
+    color: #ffffff;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+
+.book-header a.heading 
+{
+  float: left;
+    font-size: 25px;
+    color: #ffffff;
+}
+
+.bookTable
+{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    float:left;
+    margin-left: 20%;
+  
+}
