@@ -1,3 +1,5 @@
+
+/* Header styling */
 .book-header {
   overflow: auto;
     background-color: #380b5c;
@@ -9,6 +11,7 @@
     padding: 12px;
     text-decoration: none;
     font-size: 18px;
+    font-family: 'Roboto', sans-serif;
 }
 
 
@@ -17,12 +20,169 @@
   float: left;
     font-size: 25px;
     color: #ffffff;
+    font-family: 'Roboto', sans-serif;
 }
 
 .bookTable
 {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    float:left;
-    margin-left: 20%;
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center;/* */
+  flex-direction: row;
+  /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
+    /* float:left; */
+    /* margin-left: 25%;
+    margin-right: 25%; */
+    /* background-color: white; */
+   
   
+}
+
+/* serach box styling */
+.searchBox
+{
+ margin-left: 38%;
+}
+
+.searchBox input[type=text]
+{
+  padding: 10px 15px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #380b5c;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  width: 200px;
+  border-radius: 10px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.searchBox button
+{
+  border: none;
+  padding: 10px;
+  background-color: #380b5c;
+  color: white;
+  font-size: 15px;
+  margin-left: 10px;
+  border-radius: 5px;
+  font-family:'Roboto', sans-serif;
+}
+
+/* addBook form styling */
+.AddBookForm
+{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  float:left;
+  margin-left: 40%;
+  margin-right: 40%;
+  /* height: 300px; */
+  /* width: 300px; */
+  padding: 30px 40px;
+  align-items: center;
+  background-color: #e3e3e3;
+
+}
+.AddBookForm input
+{
+  padding: 10px 15px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #380b5c;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  width: 200px;
+  border-radius: 5px;
+  
+}
+
+.AddBookForm button
+{
+  border: none;
+  padding: 10px;
+  background-color: #380b5c;
+  color: white;
+  font-size: 15px;
+  margin-left: 10px;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+}
+/* login Form styling */
+
+.loginForm
+{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  float:left;
+  margin-left: 40%;
+  margin-right: 40%;
+  /* height: 300px; */
+  /* width: 300px; */
+  padding: 30px 40px;
+  align-items: center;
+  background-color: #e3e3e3;;
+}
+.loginForm input
+{
+  padding: 10px 15px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #380b5c;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  width: 200px;
+  border-radius: 5px;
+}
+.loginForm button
+{
+
+  border: none;
+  padding: 10px;
+  background-color: #380b5c;
+  color: white;
+  font-size: 15px;
+  margin-left: 10px;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+
+}
+
+/* Register form styling */
+
+.RegisterForm
+{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  float:left;
+  margin-left: 40%;
+  margin-right: 40%;
+  /* height: 300px; */
+  /* width: 300px; */
+  padding: 30px 40px;
+  align-items: center;
+  background-color: #e3e3e3;
+}
+.RegisterForm input
+{
+  padding: 10px 15px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #380b5c;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  width: 200px;
+  border-radius: 5px;
+}
+.RegisterForm button
+{
+  border: none;
+  padding: 10px;
+  background-color: #380b5c;
+  color: white;
+  font-size: 15px;
+  margin-left: 10px;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
 }

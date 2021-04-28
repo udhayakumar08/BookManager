@@ -6,6 +6,7 @@ import Booklist from './components/Booklist';
 import AddBook from './components/AddBook';
 import Register from './components/Register';
 import Login from './components/Login';
+import Delete from './components/Delete';
 
 function App() {
   return (<>
@@ -21,6 +22,7 @@ function App() {
         <Route path="/Addbook" component={AddBook}></Route>
         <Route path="/Register" component={Register}></Route>
         <Route path="/Login" component={Login}></Route>
+        <Route path="/Delete" component={Delete}></Route>
       </Switch>
 
     </div>

@@ -7,6 +7,7 @@ export default class Header extends React.Component {
         return (<>
             <div className="book-header">   
              <a className="heading">Book Management System</a>
+             <Link to="/Delete">Delete Book</Link>
              <Link to="/Register">Register</Link>
              <Link to="/Login">Login</Link>
              <Link to="/AddBook">Add Book</Link>

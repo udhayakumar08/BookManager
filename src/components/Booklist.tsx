@@ -1,19 +1,24 @@
 import React from 'react'
 import CSS from 'csstype';
 import { BrowserRouter, Route, Link } from "react-router-dom";
+import {Card,Button} from 'react-bootstrap'
 
 
 export default class Booklist extends React.Component {
 
-        state={
-            bookData:[]
-        }
+    state = {
+        bookData: [],
+        searchValue: ''
+    }
 
     TableStyle: CSS.Properties = {
         borderCollapse: "collapse",
-        border: "1px solid white",
         textAlign: "center",
-        padding: "10px 15px"
+        border: "1px solid white",
+        padding: "10px 15px",
+        backgroundColor: "#e3e3e3",
+        // width:"100%"
+        fontFamily: "Roboto,sans-serif"
     }
 
     headStyle: CSS.Properties = {
@@ -21,59 +26,76 @@ export default class Booklist extends React.Component {
         borderCollapse: "collapse",
         padding: "10px 15px",
         border: "1px solid white",
-        color: "#ffffff"
+        color: "#ffffff",
+        // width:"100%"
+        fontFamily: "Roboto,sans-serif"
+    }
+
+
+
+    search = () => {
+        console.log(this.state.searchValue);
+        let books: any = this.state.bookData;
+        let keyword = this.state.searchValue;
+        let searchedData: any = [];
+        for (let i = 0; i < books.length; i++) {
+            console.log("loop", i);
+            if (books[i].title.toLowerCase().includes(keyword) || books[i].author.toLowerCase().includes(keyword)) {
+
+                searchedData.push(books[i])
+            }
+        }
+        console.log(searchedData)
+        this.setState({ bookData: searchedData })
+
+    }
+    getSearchValue = (e: any) => {
+        this.setState({ [e.target.name]: e.target.value })
+
+    }
+
+    refresh = () => {
+        let data: any = localStorage.getItem('bookData')
+        this.setState({ bookData: JSON.parse(data) })
     }
 
     componentDidMount() {
-       this.setState({bookData:localStorage.getItem('bookData')})
-        // // console.log("book", Tdata);
-        // let Tdata=this.state.bookData;
-        // console.log("TData",Tdata);
-
+        let data: any = localStorage.getItem('bookData')
+        this.setState({ bookData: JSON.parse(data) })
     }
 
     render() {
-        
+        let Tdata = this.state.bookData;
         return (
+            <div className="MainDivOfBooks">
+                <div className="searchBox">
+                    <input type="text" name="searchValue" onChange={this.getSearchValue} placeholder="search" />
+                    <button onClick={this.search} >Search</button>
+                    <button onClick={this.refresh}>Refersh</button>
+                </div>
+                <br />
 
-            <div className="bookTable">
-                <table style={this.TableStyle}>
-
-                    <tr>
-                        <td style={this.headStyle}>Cover</td>
-                        <td style={this.headStyle}>Title</td>
-                        <td style={this.headStyle}>Auther</td>
-                        <td style={this.headStyle}>Rating</td>
-                        <td style={this.headStyle}>Price</td>
-                    </tr>
-
-                    <tr>
-                        <td style={this.TableStyle}><img src="https://picsum.photos/50" /></td>
-                        <td style={this.TableStyle}>My Truth</td>
-                        <td style={this.TableStyle}>Indira Gandhi</td>
-                        <td style={this.TableStyle}>5</td>
-                        <td style={this.TableStyle}>300</td>
-                    </tr>
-                    {/* {Tdata.map((row:any) => {
-                        
-                        
-                        return (
-
-                            <tr>
-                                <td>{row.id} </td>
-                                <td>{row.title} </td>
-                                <td>{row.name} </td>
-                                <td>{row.rating} </td>
-                                <td>{row.price} </td>
-
-                            </tr>
-                        )
-
-                    })
-                    } */}
+                <div className="bookTable">
+                    
+                        {Tdata.map((row: any, i) => {
 
 
-                </table>
+                            return (
+                                <Card style={{ width: '100px',height:'200px',margin:'20px'}}>
+                                    <Card.Img variant="top" src={row.cover} height="100%" width="100%" />
+                                    <Card.Body>
+                                        <Card.Title>{row.title}</Card.Title>
+                                        <Card.Text>
+                                            {row.author}
+                                            </Card.Text>
+                                        <Button variant="primary">Show Details</Button>
+                                    </Card.Body>
+                                </Card>
+                            )
+
+                        })
+                        }
+                </div>
             </div>
         )
     }
