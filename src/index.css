@@ -23,19 +23,24 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.bookTable
+.CardView
 {
-  display: flex;
-  /* justify-content: center; */
-  /* align-items: center;/* */
-  flex-direction: row;
-  /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
-    /* float:left; */
-    /* margin-left: 25%;
-    margin-right: 25%; */
-    /* background-color: white; */
-   
-  
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  height: 400px;
+  width: 250px;
+  margin: 20px;
+  align-items: center;
+  float:left;
+  padding: 20px 20px;
+  background-color: #e3e3e3;
+
+}
+.CardView :hover{
+  transition: all 0.2s ease-out;
+  box-shadow: #e3e3e3;
+  top: -4px;
+  border: 1px solid #e3e3e3;
+  background-color: #e3e3e3;
 }
 
 /* serach box styling */
@@ -176,6 +181,43 @@
   border-radius: 5px;
 }
 .RegisterForm button
+{
+  border: none;
+  padding: 10px;
+  background-color: #380b5c;
+  color: white;
+  font-size: 15px;
+  margin-left: 10px;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+.DeleteBook
+{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  float:left;
+  margin-left: 40%;
+  margin-right: 40%;
+  /* height: 300px; */
+  /* width: 300px; */
+  padding: 30px 40px;
+  align-items: center;
+  background-color: #e3e3e3;
+}
+.DeleteBook input
+{
+  padding: 10px 15px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #380b5c;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  width: 200px;
+  border-radius: 5px;
+}
+.DeleteBook button
 {
   border: none;
   padding: 10px;

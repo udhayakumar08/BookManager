@@ -38,7 +38,7 @@ export default class AddBook extends React.Component {
             price: this.state.price, cover: this.state.cover, rating: this.state.rating
         })
         localStorage.setItem('bookData', JSON.stringify(books));
-        event.preventDefault();
+        // event.preventDefault();
     }
 
     handleChanges = (e: any) => {
@@ -46,6 +46,10 @@ export default class AddBook extends React.Component {
         console.log(this.state);
     }
 
+    componentDidMount=()=>{
+       
+
+    }
     render() {
         return (
             <div className="AddBookForm">

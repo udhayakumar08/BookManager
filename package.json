@@ -13,8 +13,10 @@
     "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",
     "react-bootstrap-icons": "^1.4.0",
+    "react-bootstrap-star-rating": "*",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "react-star-rating": "^1.4.2",
     "typescript": "^4.2.4",
     "web-vitals": "^1.1.1"
   },

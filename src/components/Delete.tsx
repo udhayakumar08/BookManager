@@ -10,7 +10,7 @@ export default class Delete extends Component {
     
     render() {
        const DeleteBook=(e:any)=>{
-            e.preventDefault();
+           
             let keyword=e.target.keyword.value;
             // console.log(keyword);
             let books=JSON.parse(localStorage.getItem('bookData')!);
@@ -19,14 +19,14 @@ export default class Delete extends Component {
             let newBooks=books.filter((book:any)=>book.title!=keyword)
             localStorage.setItem('bookData',JSON.stringify(newBooks))
             
-            
+          
             
             
         }
         return (
-            <div>
+            <div className="DeleteBook">
                 <form onSubmit={(e) => DeleteBook(e)}>
-                <label style={this.FontStyle}>Enetr BookId to delete book</label><br/>
+                <label style={this.FontStyle}>Book Name to delete book</label><br/>
                 <input type="text" id="keyword"/><br/> <br/>
                 <button type="submit">Delete</button>
                 </form>
