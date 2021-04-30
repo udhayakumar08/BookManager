@@ -1,28 +1,28 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import CSS from 'csstype';
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import { Card, Button, Form } from 'react-bootstrap'
 // import StarRatingComponent from 'react-star-rating-component'
 
+interface book{
+    getBook: Function;
+}
 
-export default class Booklist extends React.Component {
+export default function Booklist(props: book) {
 
-    state = {
-        bookData: [],
-        searchValue: '',
-        tag:''
+    const [bookData, setBooks] = useState([]);
+    const [searchValue, setSearchValue] = useState("");
+    const [tag, setTag] = useState("");
 
-    }
-
-    FontStyle: CSS.Properties = { fontFamily: "Roboto,sans-serif", textAlign: "center" }
-    ButtonStyle: CSS.Properties = {
-        border: "none",
-        padding: "10px",
-        backgroundColor: "#380b5c",
-        color: "white",
-        width: "100%",
-        fontFamily: "Roboto,sans-serif"
-    }
+    // FontStyle: CSS.Properties = { fontFamily: "Roboto,sans-serif", textAlign: "center" }
+    // ButtonStyle: CSS.Properties = {
+    //     border: "none",
+    //     padding: "10px",
+    //     backgroundColor: "#380b5c",
+    //     color: "white",
+    //     width: "100%",
+    //     fontFamily: "Roboto,sans-serif"
+    // }
 
     // TableStyle: CSS.Properties = {
     //     borderCollapse: "collapse",
@@ -45,150 +45,128 @@ export default class Booklist extends React.Component {
     // }
 
 
-    tagvalue=(e)=>{
-        this.setState({tag:e.target.value})
-        
+    function tagvalue(e) {
+        setTag(e.target.value)
+
     }
 
-    search = (e) => {
-        console.log(this.state.searchValue);
-        let books: any = this.state.bookData;
-        let keyword = this.state.searchValue;
+    function search(e: any) {
+        console.log(searchValue);
+        let books: any = bookData;
+        let keyword = searchValue;
+        let option = tag;
 
-        
-        console.log("Tag value",this.state.tag);
-        let option=this.state.tag;
+
+
         let searchedData: any = [];
-        
-        if(option==="title")
-        {
+
+        if (option === "title") {
             for (let i = 0; i < books.length; i++) {
-                // console.log("loop", i);
                 if (books[i].title.toLowerCase().includes(keyword)) {
-    
+
                     searchedData.push(books[i])
                 }
             }
 
-            this.setState({ bookData: searchedData })
+            setBooks(searchedData)
         }
-        else if(option==="Author")
-        {
-            
-                for (let i = 0; i < books.length; i++) 
-                {
-                    // console.log("loop", i);
-                    if (books[i].author.toLowerCase().includes(keyword)) {
-        
-                        searchedData.push(books[i])
-                    }
+        else if (option === "Author") {
+
+            for (let i = 0; i < books.length; i++) {
+                if (books[i].author.toLowerCase().includes(keyword)) {
+
+                    searchedData.push(books[i])
                 }
-                
-                this.setState({ bookData: searchedData })
-            
+            }
+
+            setBooks(searchedData)
         }
-        else if(option==="Price")
-        {
-            
-                for (let i = 0; i < books.length; i++) 
-                {
-                    // console.log("loop", i);
-                    if (Number(books[i].price)<=Number(keyword)) 
-                    {
-                        console.log(books[i]);
-                        searchedData.push(books[i])
-                        
-                    }
-                    
+        else if (option === "Price") {
+
+            for (let i = 0; i < books.length; i++) {
+                if (Number(books[i].price) <= Number(keyword)) {
+                    console.log(books[i]);
+                    searchedData.push(books[i])
+
                 }
-                
-                this.setState({ bookData: searchedData })
-                //console.log(books);
-                
-                // console.log(Number(keyword));
-                // console.log(books[0].price);
-                
-                
-            
+
+            }
+
+            setBooks(searchedData)
+
         }
-        
-       
-        
 
     }
-    getSearchValue = (e: any) => {
-        this.setState({ [e.target.name]: e.target.value })
+    function getSearchValue(e: any) {
+        setSearchValue(e.target.value)
 
     }
 
-    refresh = () => {
+    function refresh() {
         let data: any = localStorage.getItem('bookData')
-        this.setState({ bookData: JSON.parse(data) })
+        setBooks(JSON.parse(data))
     }
 
-    componentDidMount() {
+    useEffect(() => {
         let data: any = localStorage.getItem('bookData')
-        this.setState({ bookData: JSON.parse(data) })
-    }
+        setBooks(JSON.parse(data))
 
-    render() {
-        let Tdata = this.state.bookData;
-        return (
-            <div className="MainDivOfBooks">
-                <div className="searchBox">
-
-                    <Form.Group controlId="SerchForm" onClick={(e)=>{this.search(e)}}>
-                        <Form.Label>Filter:</Form.Label>
-
-                            <select  value={this.state.tag} onChange={this.tagvalue}>
-                                <option value="choose">Choose..</option>
-                                <option value="Author">Auther</option>
-                                <option value="title">Title</option>
-                                <option value="Price">Max Price Range</option>
-                                <option value="rating">Rating Range </option>
-                                </select> 
-{/*                        
-                        <Button variant="primary" type="submit">
-                            Submit
-                            </Button> */}
-                    </Form.Group>
-
-                    <input type="text" name="searchValue" onChange={this.getSearchValue} placeholder="search" />
-                    <button onClick={this.search} >Apply</button>
-                    <button onClick={this.refresh}>Refersh</button>
-                </div>
-                <br />
-
-                <div className="bookTable">
-
-                    {Tdata.map((row: any, i) => {
+    }, [])
 
 
-                        return (
-                            <Card className="CardView">
-                                <Card.Img variant="top" src={row.cover} height="80%" width="100%" />
-                                <Card.Body>
-                                    <Card.Title style={this.FontStyle}>{row.title}</Card.Title>
+    let Tdata = bookData;
+    return (
+        <div className="MainDivOfBooks">
 
-                                    <Card.Text style={this.FontStyle}>
+            <div className="searchBox">
 
-                                    </Card.Text>
+                <Form.Group controlId="SerchForm" onClick={(e) => { search(e) }}>
+                    <Form.Label>Filter:</Form.Label>
 
-                                    <Card.Text style={this.FontStyle}>
-                                        {/* <StarRating name="BookRating" totalStars={Number(row.rating)}></StarRating> */}
-                                    </Card.Text>
+                    <select value={tag} id="tagV" onChange={tagvalue}>
+                        <option value="choose">Choose..</option>
+                        <option value="Author">Auther</option>
+                        <option value="title">Title</option>
+                        <option value="Price">Max Price Range</option>
+                        <option value="rating">Rating Range </option>
+                    </select>
 
-                                    <Button variant="primary" style={this.ButtonStyle}>Show Details</Button>
-                                </Card.Body>
-                            </Card>
-                        )
+                </Form.Group>
 
-                    })
-                    }
-                </div>
+                <input type="text" name="searchValue" id="searchV" onChange={getSearchValue} placeholder="search" />
+                <button onClick={search} >Apply</button>
+                <button onClick={refresh}>Refersh</button>
             </div>
-        )
-    }
+
+            <br />
+
+            <div className="bookTable">
+
+                {Tdata.map((row: any, i) => {
+
+
+                    return (
+                        <Card className="CardView">
+                            <Card.Img variant="top" src={row.cover} height="80%" width="100%" />
+                            <Card.Body>
+                                <Card.Title>{row.title}</Card.Title>
+
+                                <div onClick={()=>props.getBook(row)} >
+                                    
+                                    <Link to="/details"   >Show Details</Link>
+
+                                </div>
+
+                            </Card.Body>
+                        </Card>
+                    )
+
+                })
+                }
+            </div>
+        </div>
+    )
 }
+
 
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import CSS from 'csstype';
 
+
 let books: any = localStorage.getItem('bookData');
 if (!books) {
     books = [];
@@ -8,72 +9,38 @@ if (!books) {
 else {
     books = JSON.parse(books);
 }
-export default class AddBook extends React.Component {
+export default function AddBook() {
 
-    state = {
-        title: '',
-        author: '',
-        rating: '',
-        price: '',
-        cover: '',
-    }
-
-    FontStyle:CSS.Properties={fontFamily: "Roboto,sans-serif"}
-
-    handleFormData = (event: any) => {
+    function handleFormData(event: any) {
         console.log("clicked...");
-        
-        // let books: any = localStorage.getItem('bookData');
-        // let data: any = JSON.parse(books);
-
-        this.setState({
-            title: this.state.title, author: this.state.author,
-            price: this.state.price, cover: this.state.cover, rating: this.state.rating
-        });
-        console.log("state", this.state);
-        
-        //   let data:any=[];
+        event.preventDefault();
+        let title = event.target.title.value;
+        console.log(title);
         books.push({
-            title: this.state.title, author: this.state.author,
-            price: this.state.price, cover: this.state.cover, rating: this.state.rating
+            title: event.target.title.value, author: event.target.author.value,
+            price: event.target.price.value, cover: event.target.cover.value, rating: event.target.rating.value
         })
         localStorage.setItem('bookData', JSON.stringify(books));
-        // event.preventDefault();
+        alert("book added successfullly")
     }
-
-    handleChanges = (e: any) => {
-        this.setState({ [e.target.name]: e.target.value })
-        console.log(this.state);
-    }
-
-    componentDidMount=()=>{
-       
-
-    }
-    render() {
-        return (
-            <div className="AddBookForm">
-                <form >
-                    <label style={this.FontStyle}>Enter Book Title:</label><br />
-                    <input type="text" name="title" value={this.state.title} onChange={this.handleChanges} /><br />
-                    <label style={this.FontStyle}>Enter Book Auther</label><br />
-                    <input type="text" name="author" value={this.state.author} onChange={this.handleChanges} /><br />
-                    <label style={this.FontStyle}>Enter Book Rating</label><br />
-                    <input type="text" name="rating" value={this.state.rating} onChange={this.handleChanges} /><br />
-                    <label style={this.FontStyle}>Enter Book Price</label><br />
-                    <input type="text" name="price" value={this.state.price} onChange={this.handleChanges} /><br />
-                    <label style={this.FontStyle}>Add Book Cover</label><br />
-                    <input type="text" name="cover" value={this.state.cover} onChange={this.handleChanges} /><br /><br />
-                    <button type="submit" onClick={this.handleFormData}>Add Book</button>
-                </form>
-            </div>
-        )
-    }
+    return (
+        <div className="AddBookForm">
+            <form onSubmit={handleFormData}>
+                <label >Enter Book Title:</label><br />
+                <input type="text" id="title" /><br />
+                <label >Enter Book Auther</label><br />
+                <input type="text" id="author" /><br />
+                <label >Enter Book Rating</label><br />
+                <input type="text" id="rating" /><br />
+                <label >Enter Book Price</label><br />
+                <input type="text" id="price" /><br />
+                <label >Add Book Cover</label><br />
+                <input type="text" id="cover" /><br /><br />
+                <button type="submit">Add Book</button>
+            </form>
+        </div>
+    )
 }
-
-
-
-
 
 
 
